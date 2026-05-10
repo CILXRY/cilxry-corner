@@ -14,25 +14,17 @@ jobs:
       - name: 拉取纪事小栈
         uses: actions/checkout@v4
 
-      - name: 拉取配置
+      - name: 拉取内容
         uses: actions/checkout@v4
         with:
           repository: CILXRY/cilxry-markdown-pages
-          path: src/config
-          sparse-checkout: |
-            configs
+          path: ccapr
           token: ${{secrets.CILXRY_GITHUB_TOKEN}}
 
-      - name: 拉取博客内容
-        uses: actions/checkout@v4
-        with:
-          repository: CILXRY/cilxry-markdown-pages
-          path: src/content
-          sparse-checkout: |
-            Assets
-            posts
-          # timestamp-memos
-          token: ${{secrets.CILXRY_GITHUB_TOKEN}}
+      - name: 挂载配置目录
+        run: |
+          ln -sf $(pwd)/ccapr/configs src/config/configs
+          ln -sf $(pwd)/ccapr/ src/contents
 
       - name: 部署 NodeJS 环境
         uses: actions/setup-node@v4
