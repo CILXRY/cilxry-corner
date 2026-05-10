@@ -3,7 +3,7 @@
 import swup from "@swup/astro";
 import vue from "@astrojs/vue";
 import UnoCSS from "unocss/astro";
-import sitemap from '@astrojs/sitemap';
+import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import { SiteConfig } from "./src/config/index.ts";
 
@@ -35,12 +35,12 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkBreaks],
     rehypePlugins: [
-      rehypeSlug,
       [
         rehypeAutolinkHeadings,
         { behavior: "append", properties: { className: ["header-anchor"] } },
       ],
-      rehypeCallouts,
+      [rehypeCallouts, { theme: "obsidian" }],
+      rehypeSlug,
     ],
     shikiConfig: {
       themes: {
