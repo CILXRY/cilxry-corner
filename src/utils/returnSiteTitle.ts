@@ -1,4 +1,4 @@
-import { SiteConfig } from "@cfg/mainConfig.ts";
+import { SiteConfig } from "@cfg/index.ts";
 
 export function siteTitle(currentTitle: string = "") {
   if (currentTitle == "") {
