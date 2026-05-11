@@ -12,12 +12,12 @@
   {
     "name": "category",
     "type": "string",
-    "required": true
+    "required": false
   },
   {
     "name": "author",
     "type": "string",
-    "required": true
+    "required": false
   },
   {
     "name": "draft",
@@ -27,7 +27,7 @@
   {
     "name": "description",
     "type": "string",
-    "required": true
+    "required": false
   },
   {
     "name": "descGenAuthor",
@@ -40,24 +40,14 @@
     "required": false
   },
   {
-    "name": "wordCount",
-    "type": "number",
-    "required": false
-  },
-  {
-    "name": "readingTime",
-    "type": "number",
-    "required": false
-  },
-  {
     "name": "creation",
     "type": "datetime",
-    "required": true
+    "required": false
   },
   {
     "name": "published",
     "type": "datetime",
-    "required": true
+    "required": false
   },
   {
     "name": "warning",

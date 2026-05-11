@@ -11,7 +11,7 @@ export const postsSchema = z.object({
     .default(null),
   author: z.string().nullable().optional().default("CILXRY"),
   draft: z.boolean().default(true),
-  description: z.string().default("描述被吃掉了啦"),
+  description: z.string().optional().nullable().default("描述被吃掉了啦"),
   descGenAuthor: z.string().optional().nullable(),
   descGenTime: z.coerce.date().optional(),
   creation: z.coerce.date().default(new Date(0)),
