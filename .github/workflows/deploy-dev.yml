@@ -23,8 +23,14 @@ jobs:
 
       - name: 挂载配置目录
         run: |
-          ln -sf $(pwd)/ccapr/configs src/config/configs
-          ln -sf $(pwd)/ccapr/ src/contents
+          mkdir -p src/config
+          cp -r ccapr/configs src/config/configs
+          cp -r ccapr src/contents
+
+      # - name: 挂载配置目录
+      #   run: |
+      #     ln -sf $(pwd)/ccapr/configs src/config/configs
+      #     ln -sf $(pwd)/ccapr/ src/contents
 
       - name: 部署 NodeJS 环境
         uses: actions/setup-node@v4
@@ -38,6 +44,11 @@ jobs:
 
       - name: 安装依赖
         run: pnpm install --frozen-lockfile
+
+      - name: Debug config path
+        run: |
+          ls src/config/configs
+          ls src/config/configs/personalConfig.ts
 
       - name: 构建纪事小栈
         run: pnpm run build
