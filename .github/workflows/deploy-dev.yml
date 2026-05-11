@@ -25,8 +25,8 @@ jobs:
         run: |
           mkdir -p src/config
           cp -r ccapr/configs src/config/configs # 配置
-          mkdir -p src/contents/posts
-          cp -r ccapr/posts/. src/contents/posts # 博客
+          mkdir -p src/content/posts
+          cp -r ccapr/posts/. src/content/posts # 博客
 
       - name: 部署 NodeJS 环境
         uses: actions/setup-node@v4
