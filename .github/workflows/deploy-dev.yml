@@ -21,16 +21,12 @@ jobs:
           path: ccapr
           token: ${{secrets.CILXRY_GITHUB_TOKEN}}
 
-      - name: 挂载配置目录
+      - name: 挂载配置和内容
         run: |
           mkdir -p src/config
-          cp -r ccapr/configs src/config/configs
-          cp -r ccapr src/contents
-
-      # - name: 挂载配置目录
-      #   run: |
-      #     ln -sf $(pwd)/ccapr/configs src/config/configs
-      #     ln -sf $(pwd)/ccapr/ src/contents
+          cp -r ccapr/configs src/config/configs # 配置
+          mkdir -p src/contents/posts
+          cp -r ccapr/posts/. src/contents/posts # 博客
 
       - name: 部署 NodeJS 环境
         uses: actions/setup-node@v4
