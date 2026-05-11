@@ -41,6 +41,11 @@ jobs:
       - name: 安装依赖
         run: pnpm install --frozen-lockfile
 
+      - name: Debug config path
+        run: |
+          ls src/config/configs
+          ls src/config/configs/personalConfig.ts
+
       - name: 构建纪事小栈
         run: pnpm run build
 
