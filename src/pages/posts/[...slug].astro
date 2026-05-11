@@ -25,7 +25,6 @@ if (!post || post.data.draft) {
 const { Content, headings } = await render(post);
 
 const firstH1 = headings.find((h) => h.depth === 1);
-const displayTitle = firstH1?.text ?? post.data.title;
 
 import Calendar from "@lucide/astro/icons/calendar-days";
 import Modified from "@lucide/astro/icons/pencil";
@@ -51,6 +50,7 @@ declare global {
     rounded-2xl
     dark:d-bg-secondary
     text-primary
+    class="markdown-main-style"
   >
     <header class="post-header">
       <h1
@@ -62,8 +62,9 @@ declare global {
         l-text-muted
         dark:d-text-muted
       >
-        {displayTitle}
+        {post.data.title}
       </h1>
+      {firstH1 && <h2>{firstH1.text}</h2>}
       <div class="post-meta" flex p0 m0>
         <div class="post-date" px1 py2 m0 flex items-center gap-2>
           <Calendar size="16" />
@@ -76,8 +77,8 @@ declare global {
         <div class="post-date" px1 py2 m0 flex items-center gap-2>
           <Modified size="16" />
           {
-            post.data.published
-              ? post.data.published.toLocaleDateString("zh-CN")
+            post.data.updated
+              ? post.data.updated.toLocaleDateString("zh-CN")
               : "缺失修改时间"
           }
         </div>
@@ -92,13 +93,7 @@ declare global {
       </div>
     </header>
 
-    <div
-      class:list={[
-        "markdown-main-style",
-        "max-w-full",
-        { "has-content-h1": firstH1 },
-      ]}
-    >
+    <div class:list={["max-w-full", { "has-content-h1": firstH1 }]}>
       <flex>
         <div>
           <Content view-image />

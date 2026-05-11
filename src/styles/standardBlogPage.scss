@@ -19,6 +19,11 @@
 //  hr
 //  img
 // ================================
+// @use '@rehype-callouts/theme/obsidian';
+// @use 'rehype-callouts/theme/github';
+// @use 'rehype-callouts/theme/vitepress';
+
+
 .markdown-main-style {
   // 全局字体
   font-family: var(--font-list-standard);
@@ -26,15 +31,18 @@
   // H1 标题：最大字号，居中对齐，底部虚线装饰
   h1 {
     font-size: 2rem;
-    text-align: center;
-    border-bottom: 1px dashed var(--primary);
-    padding-bottom: 1rem;
+    text-align: left;
+    // border-bottom: 1px dashed var(--primary);
+    // padding-bottom: 1rem;
 
     &::before {
       .header-anchor {
         display: none;
       }
     }
+  }
+
+  h1-as-subtitle {
   }
 
   // H2 标题：次大字号，虚线下划线
@@ -59,7 +67,8 @@
       width: 100%;
       height: 8px;
       border-radius: 3px;
-      background-color: var(--primary);
+      border: 1px greenyellow;
+      // background-color: var(--primary);
       z-index: -1; // 置于文字下方
     }
   }
@@ -99,7 +108,7 @@
 
   // 段落文本：基础字号和行高
   p {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   p,
@@ -118,21 +127,21 @@
       font-size: 0.8rem;
       padding: 0 6px;
       border-radius: 6px;
-      background-color: var(--primary);
+      background-color: transparent;
       font-family: var(--font-list-coding);
       font-optical-sizing: auto;
       white-space: nowrap;
       transform: translateY(-2px);
       overflow-x: auto;
       max-width: 100%;
-      // transition:
-      //   color 0.3s,
-      //   background-color 0.3s;
-      // cursor: pointer;
-      // &:hover {
-      //   color: var(--primary);
-      //   background-color: var(--primary);
-      // }
+      transition:
+        color 0.3s,
+        background-color 0.3s;
+      cursor: pointer;
+      &:hover {
+        color: var(--text-primary);
+        background-color: var(--primary);
+      }
     }
 
     // 超链接
@@ -331,13 +340,13 @@
   //   }
   // }
 
-  // // 独立 pre 元素：允许横向滚动
-  // pre {
-  //   width: 100%;
-  //   overflow-y: auto;
-  //   -webkit-user-select: none;
-  //   user-select: text;
-  // }
+  // 独立 pre 元素：允许横向滚动
+  pre {
+    width: 100%;
+    overflow-y: auto;
+    -webkit-user-select: none;
+    user-select: text;
+  }
 
   // 无序列表：圆点标记
   ul {
