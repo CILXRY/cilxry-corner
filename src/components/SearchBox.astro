@@ -20,7 +20,7 @@ const { placeholder = "搜索文章标题或描述...", searchData } = Astro.pro
   <input
     type="text"
     id="search-input"
-    class="w-full px-4 py-2 pl-10 pr-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cp-500 focus:border-transparent transition-all"
+    class="w-full px-4 py-2 pl-10 pr-4 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cp-500 focus:border-transparent transition-all"
     placeholder={placeholder}
     aria-label="搜索"
   />
@@ -31,7 +31,7 @@ const { placeholder = "搜索文章标题或描述...", searchData } = Astro.pro
   <!-- 搜索结果下拉 -->
   <div
     id="search-results"
-    class="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl max-h-96 overflow-y-auto hidden z-50"
+    class="absolute top-full left-0 right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-xl max-h-96 overflow-y-auto hidden z-50"
   >
     <div id="search-results-content" class="p-2">
       <!-- 搜索结果将动态插入这里 -->
@@ -42,20 +42,20 @@ const { placeholder = "搜索文章标题或描述...", searchData } = Astro.pro
 <!-- 移动端搜索面板 -->
 <div
   id="search-mobile-panel"
-  class="fixed inset-0 bg-white dark:bg-gray-900 z-50 hidden"
+  class="fixed inset-0 bg-gray-900 z-50 hidden"
 >
-  <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+  <div class="p-4 border-b border-gray-700">
     <div class="flex items-center gap-2">
       <input
         type="text"
         id="search-input-mobile"
-        class="flex-1 px-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cp-500"
+        class="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cp-500"
         placeholder={placeholder}
         autofocus
       />
       <button
         id="search-mobile-close"
-        class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+        class="p-2 text-gray-400 hover:text-gray-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ const { placeholder = "搜索文章标题或描述...", searchData } = Astro.pro
 
 <button
   id="search-toggle-mobile"
-  class="lg:hidden p-2 text-gray-600 dark:text-gray-300 hover:text-cp-600 dark:hover:text-cp-400 transition-colors"
+  class="lg:hidden p-2 text-gray-300 hover:text-cp-400 transition-colors"
   aria-label="搜索"
 >
   <Search class="w-5 h-5" />
@@ -150,7 +150,7 @@ const { placeholder = "搜索文章标题或描述...", searchData } = Astro.pro
 
     if (results.length === 0) {
       container.innerHTML = `
-        <div class="p-4 text-center text-gray-500 dark:text-gray-400">
+        <div class="p-4 text-center text-gray-400">
           暂无搜索结果
         </div>
       `;
@@ -160,13 +160,13 @@ const { placeholder = "搜索文章标题或描述...", searchData } = Astro.pro
           (item: { href: any; title: any; excerpt: any; date: any; }) => `
         <a
           href="${item.href}"
-          class="block p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          class="block p-3 rounded-lg hover:bg-gray-700 transition-colors"
         >
-          <h4 class="font-medium text-gray-900 dark:text-gray-100 mb-1">
+          <h4 class="font-medium text-gray-100 mb-1">
             ${item.title}
           </h4>
-          ${item.excerpt ? `<p class="text-sm text-gray-500 dark:text-gray-400 mb-1 truncate">${item.excerpt}</p>` : ""}
-          ${item.date ? `<p class="text-xs text-gray-400 dark:text-gray-500">${item.date}</p>` : ""}
+          ${item.excerpt ? `<p class="text-sm text-gray-400 mb-1 truncate">${item.excerpt}</p>` : ""}
+          ${item.date ? `<p class="text-xs text-gray-500">${item.date}</p>` : ""}
         </a>
       `,
         )

@@ -37,13 +37,13 @@ const CardWrapper = href ? 'a' : 'div';
     "bento-card",
     "group relative overflow-hidden",
     "rounded-2xl",
-    "bg-white/60 dark:bg-gray-800/60",
+    "bg-gray-800/60",
     "backdrop-blur-xl",
-    "border border-gray-200/40 dark:border-gray-700/40",
+    "border border-gray-700/40",
     "transition-all duration-300 ease-out",
-    "hover:bg-white/80 dark:hover:bg-gray-800/80",
-    "hover:border-gray-300/60 dark:hover:border-gray-600/60",
-    "hover:shadow-xl hover:shadow-gray-400/20 dark:hover:shadow-black/40",
+    "hover:bg-gray-800/80",
+    "hover:border-gray-600/60",
+    "hover:shadow-xl hover:shadow-black/40",
     "hover:-translate-y-1",
     colSpanClass,
     rowSpanClass,
@@ -51,11 +51,11 @@ const CardWrapper = href ? 'a' : 'div';
   ]}
 >
   {/* 顶部渐变装饰 */}
-  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-gray-600/50 to-transparent" />
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-600/50 to-transparent" />
 
   {/* 悬停时的光晕效果 */}
   <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent dark:from-white/3" />
+    <div class="absolute inset-0 bg-gradient-to-br from-white/3 to-transparent" />
   </div>
 
   {/* 卡片内容 */}
@@ -64,7 +64,7 @@ const CardWrapper = href ? 'a' : 'div';
     {(title || icon) && (
       <div class="flex items-center gap-2 mb-3">
         {icon && <span class="text-lg">{icon}</span>}
-        {title && <h3 class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">{title}</h3>}
+        {title && <h3 class="text-sm font-medium text-gray-400 uppercase tracking-wide">{title}</h3>}
       </div>
     )}
 

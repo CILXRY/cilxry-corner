@@ -18,12 +18,12 @@ const { items = [] } = Astro.props;
 {
   items.length > 0 && (
     <nav
-      class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 mb-6"
+      class="flex items-center gap-1 text-sm text-gray-400 mb-6"
       aria-label="Breadcrumb"
     >
       <a
         href="/"
-        class="hover:text-cp-600 dark:hover:text-cp-400 transition-colors"
+        class="hover:text-cp-400 transition-colors"
         aria-label="首页"
       >
         <Home class="w-4 h-4" />
@@ -35,12 +35,12 @@ const { items = [] } = Astro.props;
           {item.href ? (
             <a
               href={item.href}
-              class="hover:text-cp-600 dark:hover:text-cp-400 transition-colors"
+              class="hover:text-cp-400 transition-colors"
             >
               {item.label}
             </a>
           ) : (
-            <span class="text-gray-900 dark:text-gray-100 font-medium">
+            <span class="text-gray-100 font-medium">
               {item.label}
             </span>
           )}

@@ -17,10 +17,10 @@ defineProps<{
       :class="panelVisible ? 'translate-x-0' : 'translate-x-full'"
     >
       <div
-        class="panel-scroll h-full flex flex-col l-bg-primary dark:d-bg-primary shadow-2xl overflow-y-auto"
+        class="panel-scroll h-full flex flex-col bg-surface shadow-2xl overflow-y-auto"
       >
         <header
-          class="sticky top-0 z-10 flex items-center justify-between px-6 py-5 border-b l-border-default dark:d-border-default l-bg-primary dark:d-bg-primary"
+          class="sticky top-0 z-10 flex items-center justify-between px-6 py-5 border-b border-default bg-surface"
         >
           <div>
             <h3 class="text-lg font-semibold text-primary m-0 leading-tight">
@@ -32,7 +32,7 @@ defineProps<{
           </div>
           <button
             @click="onClose"
-            class="w-10 h-10 rounded-lg l-bg-secondary dark:d-bg-secondary hover:l-bg-tertiary dark:hover:d-bg-tertiary transition-colors flex items-center justify-center border l-border-default dark:d-border-default"
+            class="w-10 h-10 rounded-lg bg-surface-secondary hover:bg-surface-tertiary transition-colors flex items-center justify-center border border-default"
             aria-label="关闭"
           >
             <X class="w-5 h-5 text-secondary" />

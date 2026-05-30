@@ -1,36 +1,9 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
-import { Moon, Sun, SunMoon, Palette } from "lucide-vue-next";
-import {
-  useTheme,
-  applyThemeColor,
-} from "@/utils/CustomizationUtils/themeUtils.ts";
-
-const { currentTheme, toggleTheme } = useTheme();
+import { ref, onMounted } from "vue";
+import { Palette } from "lucide-vue-next";
+import { applyThemeColor } from "@/utils/CustomizationUtils/themeUtils.ts";
 
 const themeColor = ref(275);
-
-const themeIcon = computed(() => {
-  switch (currentTheme.value) {
-    case "light":
-      return Sun;
-    case "dark":
-      return Moon;
-    default:
-      return SunMoon;
-  }
-});
-
-const themeLabel = computed(() => {
-  switch (currentTheme.value) {
-    case "light":
-      return "浅色";
-    case "dark":
-      return "深色";
-    default:
-      return "自动";
-  }
-});
 
 const handleThemeColorChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
@@ -46,39 +19,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="p-5 rounded-xl border l-border-default dark:d-border-default l-bg-secondary dark:d-bg-secondary">
+  <div class="p-5 rounded-xl border border-default bg-surface-secondary">
     <div class="flex items-center gap-3 mb-4">
-      <component :is="themeIcon" class="w-5 h-5 flex-shrink-0 text-secondary" />
-      <span class="text-sm font-medium text-primary">主题模式</span>
-      <span class="text-xs text-tertiary ml-auto px-2 py-0.5 rounded-full l-bg-tertiary dark:d-bg-tertiary">{{ themeLabel }}</span>
+      <Palette class="w-5 h-5 flex-shrink-0 text-secondary" />
+      <span class="text-sm font-medium text-primary">主题色</span>
+      <span class="text-xs text-tertiary ml-auto">Color</span>
     </div>
-
-    <button
-      @click="toggleTheme"
-      class="w-full py-2.5 px-4 rounded-lg text-sm font-medium text-secondary l-bg-primary dark:d-bg-primary border l-border-default dark:d-border-default hover:l-bg-tertiary dark:hover:d-bg-tertiary transition-colors"
-    >
-      点击切换主题
-    </button>
-
-    <div class="mt-5 pt-5 border-t l-border-default dark:d-border-default">
-      <div class="flex items-center gap-3 mb-4">
-        <Palette class="w-5 h-5 flex-shrink-0 text-secondary" />
-        <span class="text-sm font-medium text-primary">主题色</span>
-        <span class="text-xs text-tertiary ml-auto">Color</span>
-      </div>
-      <input
-        type="range"
-        min="0"
-        max="360"
-        step="2"
-        :value="themeColor"
-        @input="handleThemeColorChange"
-        class="w-full h-2 b-rd-1 cursor-pointer theme-slider"
-      />
-      <div class="flex justify-between mt-1.5">
-        <span class="text-xs text-tertiary">0°</span>
-        <span class="text-xs text-tertiary">360°</span>
-      </div>
+    <input
+      type="range"
+      min="0"
+      max="360"
+      step="2"
+      :value="themeColor"
+      @input="handleThemeColorChange"
+      class="w-full h-2 b-rd-1 cursor-pointer theme-slider"
+    />
+    <div class="flex justify-between mt-1.5">
+      <span class="text-xs text-tertiary">0°</span>
+      <span class="text-xs text-tertiary">360°</span>
     </div>
   </div>
 </template>
