@@ -36,3 +36,9 @@ declare namespace astroHTML.JSX {
     'stroke-width'?: string;
   }
 }
+
+declare namespace JSX {
+  interface IntrinsicElements {
+    [elemName: string]: any;
+  }
+}
