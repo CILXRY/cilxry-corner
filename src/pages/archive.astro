@@ -25,9 +25,9 @@ const totalPosts = posts.length;
   <div class="max-w-4xl mx-auto px-4 py-8">
     <!-- 标题和统计 -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 inline-flex items-center gap-2">
+      <h1 class="text-3xl font-bold text-gray-100 inline-flex items-center gap-2">
         文章
-        <span class="text-lg text-gray-500 dark:text-gray-400 font-normal">{totalPosts}</span>
+        <span class="text-lg text-gray-400 font-normal">{totalPosts}</span>
       </h1>
     </div>
 
@@ -35,7 +35,7 @@ const totalPosts = posts.length;
     {sortedYears.map((year) => (
       <div class="mb-10">
         <!-- 年份标题 -->
-        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+        <h2 class="text-xl font-semibold text-gray-200 mb-4 flex items-center gap-2">
           <div class="w-1 h-6 bg-orange-500 rounded"></div>
           {year}
         </h2>
@@ -47,14 +47,14 @@ const totalPosts = posts.length;
               href={`/blogs/${post.id}/`}
               class="block group"
             >
-              <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:border-orange-500 dark:hover:border-orange-400 transition-all duration-200 hover:shadow-md">
+              <div class="bg-gray-800 rounded-lg border border-gray-700 p-4 hover:border-orange-400 transition-all duration-200 hover:shadow-md">
                 <!-- 标题 -->
-                <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                <h3 class="text-lg font-medium text-gray-100 group-hover:text-orange-400 transition-colors">
                   {post.data.title}
                 </h3>
 
                 <!-- 元信息 -->
-                <div class="flex items-center gap-4 mt-2 text-sm text-gray-500 dark:text-gray-400">
+                <div class="flex items-center gap-4 mt-2 text-sm text-gray-400">
                   <!-- 日期 -->
                   <span class="flex items-center gap-1">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

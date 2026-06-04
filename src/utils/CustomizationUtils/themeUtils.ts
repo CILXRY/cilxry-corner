@@ -1,10 +1,4 @@
 import { oklchToHex } from "./convertColorTypeUtil.ts";
-import { ref, watch, onMounted } from "vue";
-
-const THEMES = ["auto", "light", "dark"] as const;
-type Theme = (typeof THEMES)[number];
-
-const STORAGE_KEY = "user-theme";
 
 export function getContrastYIQ(rgbHex: string): boolean {
   rgbHex = rgbHex.replace("#", "");
@@ -22,56 +16,7 @@ export function applyThemeColor(oklch: number) {
   localStorage.setItem("ThemeColor", oklch.toString());
 }
 
-export function useTheme() {
-  const currentTheme = ref<Theme>("auto");
-
-  const toggleTheme = () => {
-    const cur = THEMES.indexOf(currentTheme.value);
-    const next = (cur + 1) % THEMES.length;
-    currentTheme.value = THEMES[next];
-  };
-
-  const applyTheme = (theme: Theme) => {
-    const html = document.documentElement;
-    if (theme === "dark") {
-      html.classList.add("dark");
-    } else if (theme === "light") {
-      html.classList.remove("dark");
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      if (prefersDark) {
-        html.classList.add("dark");
-      } else {
-        html.classList.remove("dark");
-      }
-    }
-  };
-
-  onMounted(() => {
-    const saveTheme = localStorage.getItem(STORAGE_KEY) as Theme | null;
-
-    if (saveTheme && THEMES.includes(saveTheme)) {
-      currentTheme.value = saveTheme;
-    }
-
-    applyTheme(currentTheme.value);
-  });
-
-  watch(currentTheme, (newTheme) => {
-    localStorage.setItem(STORAGE_KEY, newTheme);
-    applyTheme(newTheme);
-  });
-
-  return {
-    currentTheme,
-    toggleTheme,
-  };
-}
-
 export function applyThemeWhileStartup() {
-  const saveTheme = localStorage.getItem(STORAGE_KEY) as Theme | null;
   const saveColor = localStorage.getItem("ThemeColor") as string;
   if (saveColor) applyThemeColor(Number(saveColor));
 }

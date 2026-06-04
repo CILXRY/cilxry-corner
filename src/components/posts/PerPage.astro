@@ -51,13 +51,13 @@ const { p } = Astro.props;
         {p.url.prev ? (
           <a
             href={p.url.prev}
-            class="px-4 py-2 rounded-lg text-sm font-medium bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-750 hover:border-[--cp-400] dark:hover:border-[--cp-600] transition-all"
+            class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-750 hover:border-[--cp-600] transition-all"
           >
             &larr; 上一页
           </a>
         ) : (
           <span
-            class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-600 cursor-not-allowed"
+            class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-800/50 border border-gray-700 text-gray-600 cursor-not-allowed"
           >
             &larr; 上一页
           </span>
@@ -70,7 +70,7 @@ const { p } = Astro.props;
               class={`w-9 h-9 flex items-center justify-center rounded-lg text-sm font-medium transition-all ${
                 pageNum === p.currentPage
                   ? "bg-[--cp-500] text-white shadow-sm shadow-[--cp-500]/30"
-                  : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-750 hover:border-[--cp-400] dark:hover:border-[--cp-600]"
+                  : "bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-750 hover:border-[--cp-600]"
               }`}
             >
               {pageNum}
@@ -81,13 +81,13 @@ const { p } = Astro.props;
         {p.url.next ? (
           <a
             href={p.url.next}
-            class="px-4 py-2 rounded-lg text-sm font-medium bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-750 hover:border-[--cp-400] dark:hover:border-[--cp-600] transition-all"
+            class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-750 hover:border-[--cp-600] transition-all"
           >
             下一页 &rarr;
           </a>
         ) : (
           <span
-            class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-600 cursor-not-allowed"
+            class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-800/50 border border-gray-700 text-gray-600 cursor-not-allowed"
           >
             下一页 &rarr;
           </span>
@@ -96,7 +96,7 @@ const { p } = Astro.props;
     )}
   </>
 ) : (
-  <div class="text-center py-20 text-gray-500 dark:text-gray-400">
+  <div class="text-center py-20 text-gray-400">
     <p class="text-lg mb-2">还没有文章哦</p>
     <p class="text-sm">期待第一篇博客的诞生</p>
   </div>
