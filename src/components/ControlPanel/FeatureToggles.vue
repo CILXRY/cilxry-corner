@@ -28,7 +28,7 @@ const isButtonActive = (id: string) => activeButtons.value.has(id);
 </script>
 
 <template>
-  <div class="rounded-xl border l-border-default dark:d-border-default l-bg-secondary dark:d-bg-secondary p-5">
+  <div class="rounded-xl border border-default bg-surface-secondary p-5">
     <h4 class="text-sm font-medium text-primary m-0 mb-4">功能开关</h4>
 
     <div class="grid grid-cols-5 gap-3">
@@ -40,7 +40,7 @@ const isButtonActive = (id: string) => activeButtons.value.has(id);
           'w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-200 active:scale-90',
           isButtonActive(btn.id)
             ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-md shadow-orange-500/20'
-            : 'l-bg-primary dark:d-bg-primary text-gray-400 dark:text-gray-500 border l-border-default dark:d-border-default',
+            : 'bg-surface text-gray-500 border border-default',
         ]"
         :title="btn.label"
       >
@@ -53,7 +53,7 @@ const isButtonActive = (id: string) => activeButtons.value.has(id);
     </p>
   </div>
 
-  <div class="pt-4 border-t l-border-default dark:d-border-default">
+  <div class="pt-4 border-t border-default">
     <h4 class="text-sm font-medium text-primary m-0 mb-3">其他设置</h4>
     <p class="text-xs text-tertiary m-0">
       更多功能敬请期待...

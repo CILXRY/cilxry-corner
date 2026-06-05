@@ -1,11 +1,5 @@
 ---
 // 如果温柔是罪。
-// Base Color Style
-// 它在这里是有原因的
-import "@/style/colorProfileStyle.css";
-// 卧槽 我原来一直用的老样式表我都没发现吗。
-// 我写新样式它又是怎么用起来的。
-// 太牛逼了。
 import "@/styles/base.scss";
 
 // Props Here
@@ -35,8 +29,8 @@ const renderdBackground = renderedConfig.showLayoutRendering;
     ><slot /></AttachedHeader
   >
   <body
-    class=`l-bg-primary dark:d-bg-primary`
-    text="left [var(--)] dark:[var(--gray-400)]"
+    class="bg-surface"
+    text="left"
     font-[--font-list-standard]
     antialiased
     max-w-full
@@ -45,6 +39,9 @@ const renderdBackground = renderedConfig.showLayoutRendering;
     my-0
     duration-300
   >
+    <div class="fixed w-100% h-100% cursor">
+      <div class="site-cursor-glow"></div>
+    </div>
     <NavBar />
     <div animation-layer>
       <main
@@ -60,5 +57,10 @@ const renderdBackground = renderedConfig.showLayoutRendering;
 
     <Footer />
     <BackToTop />
-  </body>
+    <script src="@/utils/cursorGlow.ts"></script>
+  </body><style>
+    .cursor {
+      pointer-events: none;
+    }
+  </style>
 </html>

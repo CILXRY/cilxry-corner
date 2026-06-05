@@ -46,9 +46,8 @@ declare global {
   <article
     py4
     px8
-    l-bg-secondary
+    bg-surface-secondary
     rounded-2xl
-    dark:d-bg-secondary
     text-primary
     class="markdown-main-style"
   >
@@ -59,8 +58,7 @@ declare global {
         text-4xl
         mb-6
         bg-clip-text
-        l-text-muted
-        dark:d-text-muted
+        text-tertiary
       >
         {post.data.title}
       </h1>
@@ -125,14 +123,14 @@ declare global {
   .post-meta {
     gap: 1.5rem;
     align-items: center;
-    color: var(--gray-600);
+    color: var(--text-secondary);
     font-size: 0.95rem;
   }
 
   .post-date {
-    background-color: var(--gray-100);
+    background-color: var(--neutral-100);
     border-radius: 8px;
-    border: 1px solid var(--gray-300);
+    border: 1px solid var(--neutral-400);
     transition: all 0.3s;
   }
 

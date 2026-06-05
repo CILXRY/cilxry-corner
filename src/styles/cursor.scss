@@ -1,0 +1,35 @@
+.site-cursor-glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 800px;
+  height: 800px;
+  margin-left: -400px;
+  margin-top: -400px;
+  transform: translate(var(--site-cx, 50vw), var(--site-cy, 50vh)) translateZ(0);
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--primary) 8%, transparent) 0%,
+    color-mix(in oklab, var(--primary) 3%, transparent) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+@media (pointer: fine) {
+  .site-cursor-glow {
+    will-change: transform;
+  }
+}
+
+.site-cursor-glow.active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-cursor-glow {
+    transition: none;
+  }
+}

@@ -1,11 +1,11 @@
 {
   "exclude": ["dist"],
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/base",
   "include": [".astro/types.d.ts", "**/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "checkJs": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "types": ["node"],
     "module": "node16",
     "noImplicitAny": true,

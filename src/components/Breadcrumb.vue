@@ -53,7 +53,7 @@ onUnmounted(() => {
 <template>
   <template v-if="isHomePage">
     <a
-      class="text-2xl font-bold tracking-tight font-mono no-underline transition-all duration-200 hover:l-bg-secondary l-text-muted hover:l-text-muted transition-all transition-duration-400 b-rd-xl px-4 py-2"
+      class="text-2xl font-bold tracking-tight font-mono no-underline transition-all duration-200 hover:bg-surface-secondary text-tertiary hover:text-tertiary transition-all transition-duration-400 b-rd-xl px-4 py-2"
       :href="navLogo.path"
     >
       {{ navLogo.key }}
@@ -61,16 +61,16 @@ onUnmounted(() => {
   </template>
   <template v-else>
     <div flex items-center gap-1 class="px-4 py-2">
-      <a href="/" class="flex items-center gap-1 l-text-muted hover:l-text-default transition-all duration-200">
+      <a href="/" class="flex items-center gap-1 text-tertiary hover:text-primary transition-all duration-200">
         <House :size="18" />
         <span hidden sm:inline>Home</span>
       </a>
       <template v-for="(segment, index) in pathSegments" :key="index">
         <div flex items-center gap-1>
-          <ChevronRight :size="16" class="l-text-muted" />
+          <ChevronRight :size="16" class="text-tertiary" />
           <a
             :href="`/${pathSegments.slice(0, index + 1).join('/')}`"
-            class="capitalize l-text-muted hover:l-text-default transition-all duration-200"
+            class="capitalize text-tertiary hover:text-primary transition-all duration-200"
           >
             {{ segment }}
           </a>
