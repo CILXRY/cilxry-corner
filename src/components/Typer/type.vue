@@ -1,5 +1,10 @@
 <template>
-  <p class="mb-6" text-colord>👋 <span>{{ currentText }}</span></p>
+  <p
+    class="mb-6"
+    text-colord
+  >
+    👋 <span>{{ currentText }}</span>
+  </p>
 </template>
 
 <script setup>

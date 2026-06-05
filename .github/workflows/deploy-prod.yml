@@ -31,7 +31,7 @@ jobs:
       - name: 部署 NodeJS 环境
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: pnpm
 
       - name: 部署 pnpm 环境
