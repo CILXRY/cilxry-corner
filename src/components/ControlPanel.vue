@@ -10,7 +10,7 @@ const { isOpen, panelVisible, toggle, close } = useControlPanel();
 
 <template>
   <div class="relative z-100">
-    <ControlPanelButton :onClick="toggle" />
+    <ControlPanelButton :on-click="toggle" />
 
     <Transition
       enter-active-class="transition-opacity duration-250"
@@ -22,8 +22,8 @@ const { isOpen, panelVisible, toggle, close } = useControlPanel();
     >
       <ControlPanelPanel
         v-if="isOpen"
-        :panelVisible="panelVisible"
-        :onClose="close"
+        :panel-visible="panelVisible"
+        :on-close="close"
       >
         <ThemeSection />
         <FeatureToggles />

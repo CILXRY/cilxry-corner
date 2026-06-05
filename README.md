@@ -44,7 +44,7 @@
 
 ## 怎么在本地运行这个项目 | How to run this project local?
 
-这个项目使用的是 `pnpm` 包管理器，因此需要用这些命令：
+这个项目使用的是 `pnpm` 包管理器和Python环境（需要在`pnpm check`），因此需要用这些命令：
 
 第一次运行项目安装依赖：`pnpm i` 或者 `pnpm install`
 

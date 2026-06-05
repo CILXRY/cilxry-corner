@@ -105,25 +105,43 @@ onUnmounted(() => {
 
 <template class="text-left">
   <div class="container">
-    <div class="status-card" :style="{ backgroundColor: statusColor }">
+    <div
+      class="status-card"
+      :style="{ backgroundColor: statusColor }"
+    >
       <h2>{{ statusName }}</h2>
       <p>{{ statusDesc }}</p>
       <small>更新于：{{ updatedAt }}</small>
     </div>
 
-    <div v-if="privacyMode" class="privacy-note">
+    <div
+      v-if="privacyMode"
+      class="privacy-note"
+    >
       🔒 隐私模式已启用，设备信息已隐藏
     </div>
 
-    <div v-else class="devices">
+    <div
+      v-else
+      class="devices"
+    >
       <h3>设备状态</h3>
-      <div v-for="device in devices" :key="device.id" class="device-item">
-        <strong>{{ device.name }}</strong
-        >：
-        <span v-if="device.in_use" class="in-use">
+      <div
+        v-for="device in devices"
+        :key="device.id"
+        class="device-item"
+      >
+        <strong>{{ device.name }}</strong>：
+        <span
+          v-if="device.in_use"
+          class="in-use"
+        >
           正在使用（{{ device.app || "未知应用" }}）
         </span>
-        <span v-else class="idle">空闲</span>
+        <span
+          v-else
+          class="idle"
+        >空闲</span>
         <div
           v-if="device.custom && Object.keys(device.custom).length > 0"
           class="custom"
