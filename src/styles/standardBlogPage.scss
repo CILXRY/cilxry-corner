@@ -32,17 +32,11 @@
   h1 {
     font-size: 2rem;
     text-align: left;
-    // border-bottom: 1px dashed var(--primary);
-    // padding-bottom: 1rem;
-
     &::before {
       .header-anchor {
         display: none;
       }
     }
-  }
-
-  h1-as-subtitle {
   }
 
   // H2 标题：次大字号，虚线下划线
@@ -68,12 +62,11 @@
       height: 8px;
       border-radius: 3px;
       border: 1px greenyellow;
-      // background-color: var(--primary);
       z-index: -1; // 置于文字下方
     }
   }
 
-  // H1-H4 通用样式：相对定位、点击交互、悬停显示锚点
+  // H1-H4 通用样式
   h1,
   h2,
   h3,
@@ -89,7 +82,7 @@
     }
   }
 
-  // 标题锚点链接：绝对定位，默认透明，悬停时显示，粗体井号标识
+  // 标题锚点链接
   .header-anchor {
     position: inline;
     padding: 4px;
@@ -108,7 +101,7 @@
 
   // 段落文本：基础字号和行高
   p {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
 
   p,
@@ -118,20 +111,20 @@
     margin: 1rem 0;
     text-align: left;
     letter-spacing: 0.6px;
-    line-height: 2;
+    line-height: 1.7;
     color: var(--text-secondary);
 
     // 行内代码
     code {
+      color: var(--cp-300);
       display: inline-flex;
-      font-size: 0.8rem;
+      font-size: 1rem;
       padding: 0 6px;
       border-radius: 6px;
       background-color: transparent;
       font-family: var(--font-list-coding);
       font-optical-sizing: auto;
       white-space: nowrap;
-      transform: translateY(-2px);
       overflow-x: auto;
       max-width: 100%;
       transition:
@@ -140,7 +133,7 @@
       cursor: pointer;
       &:hover {
         color: var(--text-primary);
-        background-color: var(--primary);
+        background-color: var(--cp-800);
       }
     }
 
@@ -150,11 +143,12 @@
       display: inline-flex;
       color: var(--primary);
       text-decoration: none;
+      padding: 0 6px;
 
       &::before {
         content: "";
         position: absolute;
-        border-radius: 2px;
+        border-radius: 6px;
         bottom: 2px;
         left: 0;
         right: 0;
@@ -180,165 +174,10 @@
     strong {
       color: var(--primary);
     }
+    em {
+      color: var(--primary);
+    }
   }
-
-  // div {
-  //   // 匹配 language-* 类名的代码块容器
-  //   &[class*="language-"] {
-  //     position: relative;
-  //     // display: flex;
-  //     flex-direction: row-reverse; // 行号在左，代码在右
-  //     border-radius: 12px;
-  //     background-color: var(--primary);
-  //     border: 1px solid var(--primary);
-  //     padding-top: 1.5rem; // 顶部工具栏
-  //     margin: 1rem 0;
-  //     overflow: hidden;
-
-  //     // 复制按钮和语言标签：绝对定位
-  //     .copy,
-  //     .lang {
-  //       position: absolute;
-  //     }
-
-  //     // 语言标签：顶部横条，显示编程语言名称
-  //     .lang {
-  //       width: 100%;
-  //       height: 36px;
-  //       top: 0;
-  //       left: 0;
-  //       display: flex;
-  //       flex-direction: row;
-  //       align-items: center;
-  //       background-color: var(--primary);
-  //       border-bottom: 1px solid var(--primary);
-  //       padding-left: 16px;
-  //       font-weight: bold;
-  //       font-size: 18px;
-  //     }
-
-  //     // 复制按钮：右上角，使用 iconfont 图标
-  //     .copy {
-  //       top: 0;
-  //       right: 0;
-  //       width: 36px;
-  //       height: 36px;
-  //       display: flex;
-  //       align-items: center;
-  //       justify-content: center;
-  //       background-color: transparent;
-  //       border: none;
-  //       // font-family: "iconfont";
-  //       font-size: 20px;
-  //       font-style: normal;
-  //       z-index: 1;
-  //       color: var(--main-font-color);
-  //       cursor: pointer;
-
-  //       // 复制图标
-  //       &::after {
-  //         content: "C";
-  //         transition: color 0.3s;
-  //       }
-
-  //       // " 复制成功 " 提示文字
-  //       &::before {
-  //         content: " 复制成功 ";
-  //         position: absolute;
-  //         left: -60px;
-  //         font-size: 14px;
-  //         white-space: nowrap;
-  //         opacity: 0;
-  //         transform: translateX(5px);
-  //         transition:
-  //           color 0.3s,
-  //           opacity 0.3s,
-  //           transform 0.3s;
-  //       }
-
-  //       // 已复制状态：显示提示文字
-  //       &.copied {
-  //         &::before {
-  //           opacity: 1;
-  //           transform: translateX(0);
-  //         }
-  //       }
-
-  //       // 悬停时变色
-  //       &:hover {
-  //         &::before,
-  //         &::after {
-  //           color: var(--main-color);
-  //         }
-  //       }
-  //     }
-
-  //     // 行号容器：右侧边栏样式
-  //     .line-numbers-wrapper {
-  //       padding: 6px 10px;
-  //       opacity: 0.6;
-  //       text-align: center;
-  //       -webkit-user-select: none;
-  //       user-select: none; // 禁止选中行号
-  //       color: var(--main-font-second-color);
-  //       background-color: var(--main-card-second-background);
-
-  //       // 单行行号
-  //       .line-number {
-  //         display: flex;
-  //         align-items: center;
-  //         justify-content: center;
-  //         height: 22px;
-  //         font-size: 14px;
-  //       }
-
-  //       // 隐藏换行符
-  //       br {
-  //         display: none;
-  //       }
-  //     }
-
-  //     // 代码内容区域
-  //     pre {
-  //       margin: 0;
-  //       padding: 6px 10px;
-  //       width: 100%;
-  //       overflow-y: auto;
-  //       -webkit-user-select: none;
-  //       user-select: text; // 允许选中代码文本
-  //       border-left: 1px solid var(--main-card-border);
-
-  //       code {
-  //         font-family: var(--font-list-coding);
-  //         font-optical-sizing: auto;
-
-  //         // 代码行
-  //         .line {
-  //           display: inline-block;
-  //           height: 22px;
-
-  //           // 语法高亮 span
-  //           span {
-  //             color: var(--shiki-light);
-  //             transition: color 0.3s;
-  //           }
-
-  //           // 高亮行样式（如 diff 中的 + / -）
-  //           &.highlighted {
-  //             width: 100%;
-  //             background-color: var(--main-card-border);
-  //             border-radius: 6px;
-  //           }
-
-  //           // 空行：减小高度
-  //           &:empty {
-  //             height: 17px;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 
   // 独立 pre 元素：允许横向滚动
   pre {
@@ -363,10 +202,11 @@
         content: "";
         position: absolute;
         left: 0;
-        top: 0.7rem;
-        width: 0.6rem;
-        height: 0.6rem;
+        top: 0.6rem;
+        width: 0.4rem;
+        height: 0.4rem;
         background-color: var(--primary);
+        font-size: 10rem;
         border-radius: 50%;
       }
 
