@@ -49,6 +49,8 @@
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.7.2",
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
     "@eslint/js": "^10.0.1",
     "@types/culori": "^4.0.1",
     "@types/hast": "^3.0.4",
