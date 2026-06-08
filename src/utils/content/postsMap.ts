@@ -1,3 +1,4 @@
+import type { GetStaticPaths } from "astro";
 import { safeGetCollection } from "./safeCollection.ts";
 
 // 1. 取所有非草稿的博客
@@ -13,3 +14,19 @@ export const tags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 export const sortedPosts = posts.sort(
   (a, b) => b.data.creation.valueOf() - a.data.creation.valueOf()
 );
+
+export function reorderedPosts<T>(posts: T[], cols: number): T[] {
+  const reorderedList: T[] = [];
+  const lines = Math.ceil(posts.length / cols);
+
+  for (let r = 0; r < cols; r++) {
+    for (let l = 0; l < lines; l++) {
+      const pos = l * cols + r;
+      if (posts[pos]) {
+        reorderedList.push(posts[pos]);
+      }
+    }
+  }
+
+  return reorderedList;
+}

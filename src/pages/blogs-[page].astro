@@ -6,7 +6,7 @@ import PerPage from "@cp/posts/PerPage.astro";
 import SearchBox from "@cp/SearchBox.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  return paginate(sortedPosts, { pageSize: 10 });
+  return paginate(sortedPosts, { pageSize: 20 });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
@@ -25,10 +25,10 @@ const allSearchData = sortedPosts.map((post) => ({
 
 <BasePageLayout k="" styled={"default"}>
   <div class="mb-8 max-w-2xl mx-auto">
-    <SearchBox
+    <!-- <SearchBox
       searchData={allSearchData}
       placeholder="搜索文章标题或描述...（还未实现搜索逻辑）"
-    />
+    /> -->
   </div>
   <PerPage p={page} />
 </BasePageLayout>
