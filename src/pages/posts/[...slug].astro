@@ -40,6 +40,9 @@ declare global {
     };
   }
 }
+
+// @ts-expect-error 缺少类型声明
+import "rehype-callouts/theme/obsidian";
 ---
 
 <BasePageLayout k={post.data.title} styled={"default"}>
