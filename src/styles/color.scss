@@ -1,16 +1,17 @@
-//  参考Material Design拙劣的模仿了这样一个颜色系统
-// ================================
-//  颜色变量定义
-// ================================
-:root {
-  // ==============================
-  // 核心可调变量
-  --primary-h: 0.1;          // 色相 (0-360), 用户通过滑块可调
-  --primary-c: 0.11;         // 彩度 (越小越灰)
+// 颜色变量定义
 
-  // 亮度基准 (向后兼容 unStandard.ts)
-  --primary-l-light: 0.65;
-  --primary-l-dark: 0.55;
+:root {
+  // 背景色 UnoCSS定义
+  --bg-surface: oklch(0.15 0.03 var(--primary-h));
+  --bg-surface-secondary: oklch(0.18 0.04 var(--primary-h));
+  --bg-surface-tertiary: oklch(0.22 0.05 var(--primary-h));
+  --bg-surface-elevated: oklch(0.25 0.05 var(--primary-h));
+
+  // 背景色 UnoCSS定义
+  --text-primary: oklch(0.92 0 0);    // 主要文字 (亮白)
+  --text-secondary: oklch(0.75 0 0);  // 次要文字 (浅灰)
+  --text-tertiary: oklch(0.55 0 0);   // 三级文字 (中灰)
+  --text-colord: oklch(0.85 var(--primary-c) var(--primary-h)); // 上色文字
 
   // ==============================
   // 主色
@@ -28,13 +29,6 @@
   --cp-700: oklch(0.42 var(--primary-c) var(--primary-h));   // active
   --cp-800: oklch(0.35 var(--primary-c) var(--primary-h));   // 更深底色
   --cp-900: oklch(0.28 var(--primary-c) var(--primary-h));   // 最深底色
-
-  // ==============================
-  // 文字颜色 (深色模式适配套)
-  --text-primary: oklch(0.92 0 0);    // 主要文字 (亮白)
-  --text-secondary: oklch(0.75 0 0);  // 次要文字 (浅灰)
-  --text-tertiary: oklch(0.55 0 0);   // 三级文字 (中灰)
-  --text-colord: oklch(0.85 var(--primary-c) var(--primary-h)); // 上色文字
 
   // 反向文字 (用于浅色背景上的深色文字)
   --tpd: oklch(0.21 0 0);
@@ -55,4 +49,13 @@
   --success: oklch(0.65 0.2 140);   // 绿
   --warning: oklch(0.8 0.2 90);     // 黄
   --error: oklch(0.65 0.25 20);     // 红
+
+  // ==============================
+  // 可调变量
+  --primary-h: 0.1;          // 色相 (0-360), 用户通过滑块可调
+  --primary-c: 0.11;         // 彩度 (越小越灰)
+
+  // 亮度基准 (向后兼容 unStandard.ts)
+  --primary-l-light: 0.65;
+  --primary-l-dark: 0.55;
 }
