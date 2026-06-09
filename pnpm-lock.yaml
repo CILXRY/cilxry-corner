@@ -53,6 +53,9 @@ importers:
       culori:
         specifier: ^4.0.2
         version: 4.0.2
+      expressive-code-fullscreen:
+        specifier: ^1.1.0
+        version: 1.1.0(@astrojs/starlight@0.38.4(astro@6.4.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@2.80.0)(sass@1.99.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.8.3)))(@expressive-code/core@0.42.0)
       expressive-code-language-badge:
         specifier: ^1.1.0
         version: 1.1.0(@astrojs/starlight@0.38.4(astro@6.4.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@2.80.0)(sass@1.99.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.8.3)))(@expressive-code/core@0.42.0)
@@ -4470,6 +4473,13 @@ packages:
   execa@9.6.1:
     resolution: {integrity: sha512-9Be3ZoN4LmYR90tUoVu2te2BsbzHfhJyfEiAVfz7N5/zv+jduIfLrV2xdQXOHbaD6KgpGdO9PRPM1Y4Q9QkPkA==}
     engines: {node: ^18.19.0 || >=20.5.0}
+
+  expressive-code-fullscreen@1.1.0:
+    resolution: {integrity: sha512-+HwKJ/TFo4xWjqjm1hWnVjgOPZkTcXE23ufEbBR7a2yXjFvZg9+2RJeIHKyFjxPHVfI2kUYfQFbTI5ugpyFn/w==}
+    engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.34'
+      '@expressive-code/core': ^0.41.3
 
   expressive-code-language-badge@1.1.0:
     resolution: {integrity: sha512-dx/PB/TRhEKY1JAKVcfv+4zHtQUsVs5bkh8OuKwVhrvlAHeoGBJx2+lhEGsGod9/Tzik75QcTrib57xEUZLZog==}
@@ -12505,6 +12515,11 @@ snapshots:
       signal-exit: 4.1.0
       strip-final-newline: 4.0.0
       yoctocolors: 2.1.2
+
+  expressive-code-fullscreen@1.1.0(@astrojs/starlight@0.38.4(astro@6.4.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@2.80.0)(sass@1.99.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.8.3)))(@expressive-code/core@0.42.0):
+    dependencies:
+      '@astrojs/starlight': 0.38.4(astro@6.4.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@2.80.0)(sass@1.99.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.8.3))
+      '@expressive-code/core': 0.42.0
 
   expressive-code-language-badge@1.1.0(@astrojs/starlight@0.38.4(astro@6.4.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@2.80.0)(sass@1.99.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.8.3)))(@expressive-code/core@0.42.0):
     dependencies:

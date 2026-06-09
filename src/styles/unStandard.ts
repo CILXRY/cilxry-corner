@@ -25,10 +25,10 @@ export const unSRule: Rule[] = [
     /^bg-surface(-secondary|-tertiary|-elevated)?$/,
     ([, suffix]) => {
       const colors: Record<string, string> = {
-        "": "oklch(0.15 0.03 var(--primary-h))",
-        "-secondary": "oklch(0.18 0.04 var(--primary-h))",
-        "-tertiary": "oklch(0.22 0.05 var(--primary-h))",
-        "-elevated": "oklch(0.25 0.05 var(--primary-h))",
+        "": "var(--bg-surface)",
+        "-secondary": "var(--bg-surface-secondary)",
+        "-tertiary": "var(--bg-surface-tertiary)",
+        "-elevated": "var(--bg-surface-elevated)",
       };
       return { "background-color": colors[suffix ?? ""] };
     },
