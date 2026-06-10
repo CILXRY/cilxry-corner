@@ -1,34 +1,36 @@
 // 基于第三方修改，见 docs/third-party.md
 // Based third-party, more info in docs/third-party.md
 
+// standard-content
 // ================================
 //  h1
 //  h2
 //  h3
-//  h4
+//  h1,h2,h3,h4
 //  .header-anchor
 //  p
 //  p,ul,li,td
 //    code
 //    a
 //    strong
-//  div&[*="language-"]
 //  ul
 //  ol
-//  .table
+//  table
 //  hr
 //  img
+// ================================
+//  toc
+//  post-meta
 // ================================
 // @use '@rehype-callouts/theme/obsidian';
 // @use 'rehype-callouts/theme/github';
 // @use 'rehype-callouts/theme/vitepress';
 
-
-.markdown-main-style {
+.standard-content {
   // 全局字体
   font-family: var(--font-list-standard);
 
-  // H1 标题：最大字号，居中对齐，底部虚线装饰
+  // H1 标题
   h1 {
     font-size: 2rem;
     text-align: left;
@@ -39,7 +41,7 @@
     }
   }
 
-  // H2 标题：次大字号，虚线下划线
+  // H2 标题
   h2 {
     font-size: 1.6rem;
     line-height: 1.6;
@@ -47,7 +49,7 @@
     padding-bottom: 0.5rem;
   }
 
-  // H3 标题：自适应宽度，底部添加圆角背景条装饰
+  // H3 标题
   h3 {
     width: fit-content;
     font-size: 1.2rem;
@@ -101,7 +103,7 @@
 
   // 段落文本：基础字号和行高
   p {
-    font-size: 1.1rem;
+    font-size: 1rem
   }
 
   p,
@@ -170,7 +172,7 @@
       }
     }
 
-    // 加粗文本：使用主题色突出显示
+    // 加粗文本
     strong {
       color: var(--primary);
     }
@@ -179,9 +181,9 @@
     }
   }
 
-  // 无序列表：圆点标记
+  // 无序列表
   ul {
-    list-style-type: none; // 隐藏默认样式
+    list-style-type: none;
     padding-left: 1rem;
 
     li {
@@ -214,7 +216,7 @@
     }
   }
 
-  // 有序列表：使用数字标记，强调色显示
+  // 有序列表
   ol {
     padding-left: 2rem;
 
@@ -226,9 +228,6 @@
     }
   }
 
-  // ========================================
-  // 表格样式（含 .table-container 包裹和裸 table）
-  // ========================================
   table {
     width: 100%;
     margin: 1rem 0;
@@ -236,11 +235,8 @@
     border-radius: 8px;
     overflow-y: hidden;
     overflow-x: auto; // 横向滚动适配移动端
-  }
-
-  table {
-    min-width: 512px; // 最小宽度保证可读性
-    max-width: 1200px;
+    // min-width: 512px; // 最小宽度保证可读性
+    // max-width: 1200px;
     margin: 0 auto;
     border-collapse: collapse; // 合并边框
     border-spacing: 0;
@@ -256,12 +252,12 @@
       border: 1px solid var(--neutral-400);
     }
 
-    // 表头：浅色背景
+    // 表头
     thead {
       background-color: var(--neutral-200);
     }
 
-    // 表格主体：行悬停效果
+    // 表格主体
     tbody {
       tr {
         transition: background-color 0.3s;
@@ -285,10 +281,170 @@
 
   // 图片
   img {
+    width: 100%;
     max-width: 24rem;
     max-height: 42rem;
-    width: auto;
+    // width: auto;
     height: auto;
     border-radius: 12px;
+  }
+}
+
+.toc {
+  .toc-inline {
+    padding: 1rem;
+    background: var(--bg-surface-tertiary);
+    border: 1px solid var(--neutral-200);
+    border-radius: 12px;
+    max-height: calc(100vh - 10rem);
+    overflow-y: auto;
+  }
+
+  .toc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--neutral-200);
+  }
+
+  .toc-icon {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  .toc-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  /* ================================
+      覆盖全局 li::before 伪元素标记
+  ================================ */
+  .toc-list,
+  .toc-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .toc-item {
+    position: static;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .toc-item::before {
+    display: none;
+    content: none;
+  }
+
+  .toc-link {
+    display: block;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  .toc-link:hover {
+    color: var(--cp-400);
+    background: var(--cp-900);
+  }
+
+  .toc-link.toc-active {
+    color: var(--cp-400);
+    background: var(--cp-800);
+    font-weight: 600;
+  }
+
+  /* 顶部/底部导航：弱化样式 */
+  .toc-link-top,
+  .toc-link-bottom {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: 1px solid var(--neutral-200);
+    border-radius: 0;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .toc-link-bottom {
+    border-top: 1px solid var(--neutral-200);
+    border-bottom: none;
+  }
+
+  .toc-link-top:hover,
+  .toc-link-bottom:hover {
+    opacity: 1;
+  }
+
+  /* 缩进：h2 / h3 / h4+ */
+  .toc-depth-2 .toc-link {
+    padding-left: 0.6rem;
+  }
+  .toc-depth-3 .toc-link {
+    padding-left: 1.5rem;
+  }
+  .toc-depth-4 .toc-link,
+  .toc-depth-5 .toc-link,
+  .toc-depth-6 .toc-link {
+    padding-left: 2.25rem;
+    font-size: 0.8rem;
+  }
+
+  /* 滚动条 */
+  .toc-inline::-webkit-scrollbar {
+    width: 4px;
+  }
+  .toc-inline::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .toc-inline::-webkit-scrollbar-thumb {
+    background: var(--neutral-200);
+    border-radius: 2px;
+  }
+}
+
+.post-meta-line {
+  gap: 1.5rem;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+
+  .post-meta {
+    background-color: var(--bg-surface-tertiary);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+    transform: translateY(0);
+    padding-left: 0.38rem;
+    padding-right: 0.38rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .post-meta:hover {
+    background-color: var(--bg-surface-elevated);
+    border-color: var(--cp-400);
+    transform: translateY(-2px);
   }
 }
