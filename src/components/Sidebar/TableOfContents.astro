@@ -72,7 +72,7 @@ const filteredHeadings = headings.filter(
     const links = nav.querySelectorAll(".toc-link");
 
     // 收集标题 slug 列表（排除顶部/底部导航）
-    const headings = [];
+    const headings: { slug: string; }[] = [];
     links.forEach(function (link) {
       if (link.classList.contains("toc-link-top") || link.classList.contains("toc-link-bottom")) return;
       var href = link.getAttribute("href");
@@ -88,7 +88,7 @@ const filteredHeadings = headings.filter(
     });
 
     // 收集所有目标标题元素
-    var targetElements = [];
+    var targetElements: HTMLElement[] | { offsetTop: number; }[] = [];
     for (var i = 0; i < headings.length; i++) {
       var el = document.getElementById(headings[i].slug);
       if (el) targetElements.push(el);
@@ -111,7 +111,7 @@ const filteredHeadings = headings.filter(
     // IntersectionObserver 高亮当前阅读标题
     var activeIndex = -1;
 
-    function updateActive(index) {
+    function updateActive(index: number) {
       if (index === activeIndex) return;
       if (activeIndex >= 0 && activeIndex < links.length) {
         links[activeIndex].classList.remove("toc-active");
