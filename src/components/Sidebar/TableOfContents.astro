@@ -1,210 +1,181 @@
 ---
-// 页面内目录组件 - 自动提取 Markdown 标题生成导航
+// 内联目录组件 - 接收服务端 headings 渲染 TOC 目录
 import List from "@lucide/astro/icons/list";
+import ArrowUp from "@lucide/astro/icons/arrow-up-from-line";
+import ArrowDown from "@lucide/astro/icons/arrow-down-to-line";
+
+interface HeadingItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
 
 interface Props {
-  title?: string;
+  headings: HeadingItem[];
   maxDepth?: number;
 }
 
-const { title = "目录" } = Astro.props;
+const { headings, maxDepth = 3 } = Astro.props;
+
+// 找出 h1 作为"回到开头"的目标
+const firstH1 = headings.find((h) => h.depth === 1);
+
+// 过滤出需要显示的标题（h2 及以上，不超过 maxDepth）
+const filteredHeadings = headings.filter(
+  (h) => h.depth >= 2 && h.depth <= maxDepth,
+);
 ---
 
-<div
-  id="table-of-contents"
-  class="hidden lg:block fixed right-8 top-24 w-64 max-h-[calc(100vh-8rem)] overflow-y-auto bg-gray-900/80 backdrop-blur-sm rounded-lg border border-gray-700 p-4 shadow-lg z-40"
->
-  <div
-    class="flex items-center gap-2 mb-3 pb-3 border-b border-gray-700"
-  >
-    <List class="w-4 h-4 text-gray-500" />
-    <h3 class="text-sm font-medium text-gray-100">
-      {title}
-    </h3>
-  </div>
-
-  <nav id="toc-content" class="space-y-1"></nav>
-</div>
-
-<button
-  id="toc-toggle-mobile"
-  class="lg:hidden fixed bottom-24 right-4 w-10 h-10 bg-cp-500 hover:bg-cp-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all z-50"
-  aria-label="切换目录"
->
-  <List class="w-5 h-5" />
-</button>
-
-<div
-  id="toc-mobile-panel"
-  class="lg:hidden fixed inset-0 bg-black/50 z-50 hidden"
->
-  <div
-    class="absolute right-0 top-0 h-full w-80 max-w-full bg-gray-900 shadow-xl p-6 overflow-y-auto"
-  >
-    <div class="flex items-center justify-between mb-4">
-      <h3 class="text-lg font-medium text-gray-100">
-        {title}
-      </h3>
-      <button
-        id="toc-mobile-close"
-        class="text-gray-400 hover:text-gray-200"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
-        </svg>
-      </button>
+{
+  (filteredHeadings.length > 0 || firstH1) && (
+    <div class="toc-inline">
+      <div class="toc-header">
+        <List class="toc-icon" size="16" />
+        <span class="toc-title">目录</span>
+      </div>
+      <nav class="toc-nav" id="toc-nav">
+        <ul class="toc-list">
+          <!-- 回到开头（h1 或文章顶部） -->
+          {firstH1 && (
+            <li class="toc-item toc-depth-1">
+              <a href={`#${firstH1.slug}`} class="toc-link toc-link-top">
+                {firstH1.text}
+              </a>
+            </li>
+          )}
+          {
+            filteredHeadings.map((h) => (
+              <li class:list={["toc-item", `toc-depth-${h.depth}`]}>
+                <a href={`#${h.slug}`} class="toc-link">
+                  {h.text}
+                </a>
+              </li>
+            ))
+          }
+          <!-- 跳到底部 -->
+          <li class="toc-item toc-depth-1">
+            <a href="#comment" class="toc-link toc-link-bottom">
+              评论&nbsp;&nbsp;↓
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav id="toc-mobile-content" class="space-y-2"></nav>
-  </div>
-</div>
+  )
+}
 
 <script>
-  interface HeadingItem {
-    id: string;
-    text: string;
-    level: number;
-  }
+  (function () {
+    const nav = document.getElementById("toc-nav");
+    if (!nav) return;
 
-  // 从 Astro.props 传递的 maxDepth
-  const maxDepth = parseInt(Astro.props.maxDepth?.toString() || "3");
+    const links = nav.querySelectorAll(".toc-link");
 
-  const tocContent = document.getElementById("toc-content");
-  const tocMobileContent = document.getElementById("toc-mobile-content");
-  const tocToggle = document.getElementById("toc-toggle-mobile");
-  const tocMobilePanel = document.getElementById("toc-mobile-panel");
-  const tocMobileClose = document.getElementById("toc-mobile-close");
-
-  // 提取页面中的标题
-  function extractHeadings(): HeadingItem[] {
-    const headings: HeadingItem[] = [];
-    const elements = document.querySelectorAll(
-      "h1[id], h2[id], h3[id], h4[id]",
-    );
-
-    elements.forEach((heading) => {
-      const level = parseInt(heading.tagName.charAt(1));
-      if (level <= maxDepth) {
+    // 收集标题 slug 列表（排除顶部/底部导航）
+    const headings = [];
+    links.forEach(function (link) {
+      if (link.classList.contains("toc-link-top") || link.classList.contains("toc-link-bottom")) return;
+      var href = link.getAttribute("href");
+      if (href && href.charAt(0) === "#") {
+        var slug = href.slice(1);
+        var li = link.closest("li");
+        var depthMatch = li ? li.className.match(/toc-depth-(\d)/) : null;
         headings.push({
-          id: heading.id,
-          text: heading.textContent || "",
-          level,
+          slug: slug,
+          depth: depthMatch ? parseInt(depthMatch[1]) : 2,
         });
       }
     });
 
-    return headings;
-  }
-
-  // 生成目录项 HTML
-  function generateTocItems(headings: HeadingItem[], isMobile = false): string {
-    if (headings.length === 0) {
-      return '<p class="text-sm text-gray-500">暂无目录</p>';
+    // 收集所有目标标题元素
+    var targetElements = [];
+    for (var i = 0; i < headings.length; i++) {
+      var el = document.getElementById(headings[i].slug);
+      if (el) targetElements.push(el);
     }
 
-    return headings
-      .map((item) => {
-        const indentClass = isMobile ? "" : `pl-${(item.level - 2) * 3}`;
-        const sizeClass = isMobile ? "text-base py-2" : "text-xs py-1";
-
-        return `
-        <a
-          href="#${item.id}"
-          class="block ${indentClass} ${sizeClass} text-gray-400 hover:text-cp-400 transition-colors truncate"
-          data-heading-level="${item.level}"
-        >
-          ${item.text}
-        </a>
-      `;
-      })
-      .join("");
-  }
-
-  // 初始化目录
-  function initTOC() {
-    const headings = extractHeadings();
-
-    if (tocContent) {
-      tocContent.innerHTML = generateTocItems(headings);
-    }
-
-    if (tocMobileContent) {
-      tocMobileContent.innerHTML = generateTocItems(headings, true);
-    }
-
-    // 如果没有标题，隐藏目录容器
-    if (headings.length === 0) {
-      document.getElementById("table-of-contents")?.classList.add("hidden");
-      tocToggle?.classList.add("hidden");
-    }
-  }
-
-  // 移动端目录开关
-  tocToggle?.addEventListener("click", () => {
-    tocMobilePanel?.classList.toggle("hidden");
-  });
-
-  tocMobileClose?.addEventListener("click", () => {
-    tocMobilePanel?.classList.add("hidden");
-  });
-
-  tocMobilePanel?.addEventListener("click", (e) => {
-    if (e.target === tocMobilePanel) {
-      tocMobilePanel.classList.add("hidden");
-    }
-  });
-
-  // 平滑滚动到锚点
-  document.addEventListener("click", (e) => {
-    const target = e.target as HTMLElement;
-    if (
-      target.tagName === "A" &&
-      target.getAttribute("href")?.startsWith("#")
-    ) {
-      const href = target.getAttribute("href");
-      if (href && href !== "#") {
-        const element = document.querySelector(href);
-        if (element) {
+    // 点击平滑滚动
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", function (e) {
+        var href = this.getAttribute("href");
+        if (href && href.charAt(0) === "#") {
           e.preventDefault();
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-
-          // 移动端点击后关闭面板
-          tocMobilePanel?.classList.add("hidden");
+          var el = document.querySelector(href);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }
+      });
+    }
+
+    // IntersectionObserver 高亮当前阅读标题
+    var activeIndex = -1;
+
+    function updateActive(index) {
+      if (index === activeIndex) return;
+      if (activeIndex >= 0 && activeIndex < links.length) {
+        links[activeIndex].classList.remove("toc-active");
       }
+      if (index >= 0 && index < links.length) {
+        links[index].classList.add("toc-active");
+      }
+      activeIndex = index;
     }
-  });
 
-  // 监听 URL hash 变化
-  window.addEventListener("hashchange", () => {
-    const currentHash = window.location.hash;
-    if (currentHash) {
-      const element = document.querySelector(currentHash);
-      element?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (targetElements.length > 0) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          var firstVisibleIdx = -1;
+          for (var j = 0; j < entries.length; j++) {
+            var entry = entries[j];
+            if (entry.isIntersecting) {
+              var idx = -1;
+              for (var k = 0; k < headings.length; k++) {
+                if (headings[k].slug === entry.target.id) {
+                  idx = k;
+                  break;
+                }
+              }
+              if (idx !== -1 && (firstVisibleIdx === -1 || idx < firstVisibleIdx)) {
+                firstVisibleIdx = idx;
+              }
+            }
+          }
+          if (firstVisibleIdx !== -1) updateActive(firstVisibleIdx);
+        },
+        {
+          rootMargin: "-110px 0px -60% 0px",
+          threshold: 0,
+        },
+      );
+
+      for (var i = 0; i < targetElements.length; i++) {
+        observer.observe(targetElements[i]);
+      }
+
+      // 页面加载后初始化高亮
+      function initActive() {
+        var scrollY = window.scrollY;
+        var currentIdx = -1;
+        for (var i = targetElements.length - 1; i >= 0; i--) {
+          if (targetElements[i].offsetTop <= scrollY + 120) {
+            currentIdx = i;
+            break;
+          }
+        }
+        if (currentIdx >= 0) updateActive(currentIdx);
+      }
+
+      if (document.readyState === "complete") {
+        initActive();
+      } else {
+        window.addEventListener("load", initActive, { once: true });
+      }
+
+      // Swup 页面切换前清理
+      document.addEventListener("astro:before-swap", function () {
+        observer.disconnect();
+      });
     }
-  });
-
-  // 初始化
-  initTOC();
+  })();
 </script>
-
-<style>
-  #toc-content a[data-heading-level="3"],
-  #toc-mobile-content a[data-heading-level="3"] {
-    margin-left: 0.75rem;
-  }
-
-  #toc-content a[data-heading-level="4"],
-  #toc-mobile-content a[data-heading-level="4"] {
-    margin-left: 1.5rem;
-  }
-</style>
