@@ -1,0 +1,33 @@
+---
+interface Props {
+  creation: Date;
+  updated: Date;
+  category: string | null;
+  tags: string | string[] | null;
+}
+
+import Calendar from "@lucide/astro/icons/calendar-days";
+import Modified from "@lucide/astro/icons/pencil";
+import Category from "@lucide/astro/icons/chart-column-stacked";
+import Tags from "@lucide/astro/icons/tags";
+const { creation, updated, category, tags } = Astro.props;
+---
+
+<div class="post-meta-line">
+  <div class="post-meta">
+    <Calendar size="16" />
+    {creation ? creation.toLocaleDateString("zh-CN") : "缺失创建时间"}
+  </div>
+  <div class="post-meta">
+    <Modified size="16" />
+    {updated ? updated.toLocaleDateString("zh-CN") : "缺失修改时间"}
+  </div>
+  <div class="post-meta">
+    <Category size="16" />
+    {category ? category : "没有分类"}
+  </div>
+  <div class="post-meta">
+    <Tags size="16" />
+    {tags ? tags : "没有标签"}
+  </div>
+</div>
