@@ -26,12 +26,6 @@ const { Content, headings } = await render(post);
 
 const firstH1 = headings.find((h) => h.depth === 1);
 
-import Calendar from "@lucide/astro/icons/calendar-days";
-import Modified from "@lucide/astro/icons/pencil";
-
-import Category from "@lucide/astro/icons/chart-column-stacked";
-import Tags from "@lucide/astro/icons/tags";
-
 // 声明 ViewImage 的全局类型
 declare global {
   interface Window {
@@ -45,6 +39,7 @@ declare global {
 import "rehype-callouts/theme/obsidian";
 
 import TableOfContents from "@/components/Sidebar/TableOfContents.astro";
+import PostMetaLine from "@cp/P_posts/PostMetaLine.astro";
 ---
 
 <BasePageLayout k={post.data.title} styled={"default"}>
@@ -54,40 +49,30 @@ import TableOfContents from "@/components/Sidebar/TableOfContents.astro";
         {post.data.title}
       </h1>
       {firstH1 && <h2 text-colord>{firstH1.text}</h2>}
-      <div class="post-meta-line">
-        <div class="post-meta">
-          <Calendar size="16" />
-          {
-            post.data.creation
-              ? post.data.creation.toLocaleDateString("zh-CN")
-              : "缺失创建时间"
-          }
-        </div>
-        <div class="post-meta">
-          <Modified size="16" />
-          {
-            post.data.updated
-              ? post.data.updated.toLocaleDateString("zh-CN")
-              : "缺失修改时间"
-          }
-        </div>
-        <div class="post-meta">
-          <Category size="16" />
-          {post.data.category ? post.data.category : "没有分类"}
-        </div>
-        <div class="post-meta">
-          <Tags size="16" />
-          {post.data.tags ? post.data.tags : "没有标签"}
-        </div>
-      </div>
+      <PostMetaLine
+        creation={post.data.creation}
+        updated={post.data.updated}
+        category={post.data.category}
+        tags={post.data.tags}
+      />
     </header>
 
     <div class:list={["max-w-full", { "has-content-h1": firstH1 }]}>
       <flex>
-        <div class="standard-content" lg:max-w-75% max-w-100%>
+        <div class="standard-content" lg:max-w-75% max-w-100% flex-1>
           <Content view-image />
         </div>
-        <div w-25% flex-auto hidden lg:block sticky top-20 h-full ml8 class="toc">
+        <div
+          max-w-25%
+          flex-auto
+          hidden
+          lg:block
+          sticky
+          top-20
+          h-full
+          ml8
+          class="toc"
+        >
           <TableOfContents headings={headings} />
         </div>
       </flex>
