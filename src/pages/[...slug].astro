@@ -1,0 +1,41 @@
+---
+// 根级 Catch-All 重定向页面
+// 处理短 ID（如 /001）和标题（如 /「纪事小栈」...）到规范 URL 的重定向
+import { safeGetCollection } from "@ut/content/safeCollection.ts";
+
+export async function getStaticPaths() {
+  const allPosts = await safeGetCollection("posts");
+  const paths: { params: { slug: string } }[] = [];
+
+  for (const post of allPosts) {
+    // 1. 短 ID：取第一个 "_" 之前的部分
+    const shortId = post.id.split("_")[0];
+    if (shortId) {
+      paths.push({ params: { slug: shortId } });
+    }
+
+    // 2. 标题
+    const title = post.data.title;
+    if (title) {
+      paths.push({ params: { slug: title } });
+    }
+  }
+
+  return paths;
+}
+
+const { slug } = Astro.params;
+const allPosts = await safeGetCollection("posts");
+
+const matchedPost = allPosts.find((p) => {
+  const shortId = p.id.split("_")[0];
+  return slug === shortId || slug === p.data.title;
+});
+
+if (matchedPost) {
+  return Astro.redirect(`/posts/${matchedPost.id}/`, 301);
+}
+
+// 如果什么都没匹配到 → 404
+return Astro.redirect("/404", 302);
+---

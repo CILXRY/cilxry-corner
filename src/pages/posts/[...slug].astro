@@ -80,16 +80,24 @@ import PostMetaLine from "@cp/P_posts/PostMetaLine.astro";
       <div id="comment"><div id="tcomment"></div></div>
       <script src="/scripts/twikoo.min.js" is:inline></script>
       <script>
-        window.addEventListener("load", () => {
-          (window as any).twikoo.init({
-            envId: "https://t.cilxry.cc",
-            el: "#tcomment",
-          });
-        });
+        function initTwikoo() {
+          if (window.twikoo) {
+            window.twikoo.init({
+              envId: "https://t.cilxry.cc",
+              el: "#tcomment",
+            });
+          }
+        }
+        // 首次
+        document.addEventListener("DOMContentLoaded", initTwikoo);
+
+        // Swup
+        document.addEventListener("swup:page:view", initTwikoo);
       </script>
     </div>
   </article>
-  <script src="/scripts/view-image.min.js" is:inline></script>
+  <script src="/scripts/view-image.min.js" is:inline data-swup-ignore-script
+  ></script>
   <script>
     window.ViewImage && window.ViewImage.init("img");
   </script>
