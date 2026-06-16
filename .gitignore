@@ -1,6 +1,7 @@
 # Personally
 src/content
 src/config/configs
+datas/
 
 # Current Rules
 .trae/*

@@ -4,8 +4,8 @@ import { postsSchema } from "./config/schema.ts";
 
 const posts = defineCollection({
   loader: glob({
-    pattern: "**/*.md",
-    base: "./src/content/posts",
+    pattern: ["*.md", "!readme.md"],
+    base: "./datas/posts",
     generateId: ({ entry }) => entry.replace(/\.md$/, ""),
   }),
   schema: postsSchema,
