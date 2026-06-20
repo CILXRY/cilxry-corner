@@ -53,6 +53,9 @@ importers:
       culori:
         specifier: ^4.0.2
         version: 4.0.2
+      ec-lang-logo:
+        specifier: ^1.0.5
+        version: 1.0.5(@expressive-code/core@0.42.0)
       expressive-code-fullscreen:
         specifier: ^1.1.0
         version: 1.1.0(@astrojs/starlight@0.38.4(astro@6.4.4(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@2.80.0)(sass@1.99.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.8.3)))(@expressive-code/core@0.42.0)
@@ -4252,6 +4255,11 @@ packages:
   duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
 
+  ec-lang-logo@1.0.5:
+    resolution: {integrity: sha512-sVtaIyeaaefRp+GzYqPbyjIILNgW/QV5O3hWtrVoluwhT+2frV9sXLmPRb32bKQH6lkkgooEypfGGdYKmIK1KQ==}
+    peerDependencies:
+      '@expressive-code/core': ^0.41.3
+
   ejs@3.1.10:
     resolution: {integrity: sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==}
     engines: {node: '>=0.10.0'}
@@ -6752,6 +6760,10 @@ packages:
   signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
+
+  simple-icons@16.23.0:
+    resolution: {integrity: sha512-08MaTpxj9zGYUIe38tfELYkaHiGE1YgbrbXmTBf+GPxi5mEqLSORQqOXrP0QKPdaFuzEDSmW5o4xkbLlFhmdCw==}
+    engines: {node: '>=0.12.18'}
 
   sirv@3.0.2:
     resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
@@ -12158,6 +12170,11 @@ snapshots:
 
   duplexer@0.1.2: {}
 
+  ec-lang-logo@1.0.5(@expressive-code/core@0.42.0):
+    dependencies:
+      '@expressive-code/core': 0.42.0
+      simple-icons: 16.23.0
+
   ejs@3.1.10:
     dependencies:
       jake: 10.9.4
@@ -15451,6 +15468,8 @@ snapshots:
       side-channel-weakmap: 1.0.2
 
   signal-exit@4.1.0: {}
+
+  simple-icons@16.23.0: {}
 
   sirv@3.0.2:
     dependencies:
