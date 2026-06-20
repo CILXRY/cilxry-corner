@@ -1,0 +1,45 @@
+---
+const name = "CILXRY";
+---
+
+<div
+  bg-surface-secondary
+  flex
+  md:block
+  text-colord
+  p-8
+  rounded-2xl
+  class="introCard group"
+>
+  <img
+    src="https://avatar.cilxry.cc"
+    alt="头像"
+    rounded-full
+    h-32
+    w-32
+    scale-100
+    group-hover:scale-105
+  />
+  <header ml-6 my-a md:ml0 mt6>
+    <h1 text-5xl font-400 m-0>{name}</h1>
+    <h3 font-400 mb-0>许愿 如所愿 皆所愿</h3>
+  </header>
+</div>
+
+<style scoped>
+  img {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 600ms;
+  }
+  .introCard {
+    border: 1px solid transparent;
+
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 600ms;
+  }
+  .introCard:hover {
+    border: 1px solid var(--cp);
+  }
+</style>

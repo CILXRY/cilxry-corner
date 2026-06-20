@@ -8,32 +8,29 @@ let recentPosts: typeof sortedPosts = [];
 recentPosts = sortedPosts.slice(0, 4);
 
 import ShowenCard from "@cp/posts/ShowenCard.astro";
+import JustIntroCard from "@cp/GlobleSite/StyledCards/JustIntroCard.astro";
 ---
 
 <BasePageLayout k="">
-  <div md:flex sm:px-4>
-    <div flex md:block md:h-xl w-xl text-colord>
-      <img src="https://avatar.cilxry.cc" alt="" rounded-full h-32 w-32 />
-      <header ml-6 my-a md:ml0 mt6>
-        <h1 text-5xl font-400 m-0>{name}</h1>
-        <h3 font-400 mb-0>许愿 如所愿 皆所愿</h3>
-      </header>
+  <div md:flex md:gap-6 sm:px-4 >
+    <div md:flex-shrink-0 md:w-60 lg:w-108>
+      <JustIntroCard />
     </div>
-    <div text-colord flex-auto mt6 md:mt0>
+    <div text-colord mt6 md:mt0 md:flex-1 md:min-w-0>
       <h1 mt0>Last Writing</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {
           recentPosts.map((post, _index) => (
-          <ShowenCard
-            header={post.data.title}
-            creation={post.data.creation}
-            content={post.data.description}
-            category={post.data.category ?? undefined}
-            tags={post.data.tags ?? []}
-            wordCount={post.data.wordCount ?? undefined}
-            readingTime={post.data.readingTime ?? undefined}
-            href={`/posts/${post.id}/`}
-          />
+            <ShowenCard
+              header={post.data.title}
+              creation={post.data.creation}
+              content={post.data.description}
+              category={post.data.category ?? undefined}
+              tags={post.data.tags ?? []}
+              wordCount={post.data.wordCount ?? undefined}
+              readingTime={post.data.readingTime ?? undefined}
+              href={`/posts/${post.id}/`}
+            />
           ))
         }
       </div>
