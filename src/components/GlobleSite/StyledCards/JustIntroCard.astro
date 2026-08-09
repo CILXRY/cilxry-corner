@@ -1,45 +1,75 @@
----
-const name = "CILXRY";
----
-
 <div
-  bg-surface-secondary
-  flex
-  md:block
-  text-colord
-  p-8
-  rounded-2xl
   class="introCard group"
 >
+  <div class="introCard-glow" aria-hidden="true"></div>
   <img
     src="https://avatar.cilxry.cc"
     alt="头像"
-    rounded-full
-    h-32
-    w-32
-    scale-100
-    group-hover:scale-105
+    class="avatar"
   />
-  <header ml-6 my-a md:ml0 mt6>
-    <h1 text-5xl font-400 m-0>{name}</h1>
-    <h3 font-400 mb-0>许愿 如所愿 皆所愿</h3>
+  <header>
+    <h1 text-4xl font-400 m-0>CILXRY</h1>
+    <h3 font-400 mb-0 text-sm>许愿 如所愿 皆所愿</h3>
   </header>
 </div>
 
 <style scoped>
-  img {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 600ms;
-  }
   .introCard {
-    border: 1px solid transparent;
-
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 600ms;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    background: color-mix(in oklch, var(--bg-surface-secondary) 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in oklch, var(--cp-800) 30%, transparent);
+    box-shadow:
+      0 2px 20px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .introCard:hover {
-    border: 1px solid var(--cp);
+    border-color: color-mix(in oklch, var(--cp) 40%, transparent);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  .introCard-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle at 50% 0%,
+      color-mix(in oklch, var(--cp) 8%, transparent) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .introCard:hover .introCard-glow {
+    opacity: 1;
+  }
+  header {
+    text-align: center;
+    color: var(--text-colord);
+  }
+  .avatar {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--cp-800) 50%, transparent);
+  }
+  .group:hover .avatar {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 2px color-mix(in oklch, var(--cp) 50%, transparent);
   }
 </style>

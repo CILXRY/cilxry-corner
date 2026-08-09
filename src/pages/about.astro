@@ -12,9 +12,13 @@ import { items } from "@cfg/index.ts";
 ---
 
 <BasePageLayout k="about">
-  <Typer client:load />
+  <div class="page-header">
+    <div class="page-header-orb" aria-hidden="true"></div>
+    <Typer client:load />
+    <div class="page-divider"></div>
+  </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 mb-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
     {
       items.map((item, _index) => (
         <FrameCard contentData={item} styling={{ theme: "macos", floatUp: true }} />
@@ -22,3 +26,29 @@ import { items } from "@cfg/index.ts";
     }
   </div>
 </BasePageLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    padding: 0 1rem;
+  }
+  .page-header-orb {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--cp-800) 0%, transparent 70%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .page-divider {
+    width: 2.5rem;
+    height: 2px;
+    margin-top: 0.75rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, var(--cp), transparent);
+    border-radius: 1px;
+  }
+</style>

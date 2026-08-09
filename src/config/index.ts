@@ -18,14 +18,13 @@ const postsFolder = "/datas/posts";
 
 export { items } from "./aboutConfig.ts";
 
-export { PersonalConfig } from "./configs/personalConfig.ts";
+const { PersonalConfig } = await import(`${configsFolder}/personalConfig.ts`);
+const { siteConfig } = await import(`${configsFolder}/siteConfig.ts`);
+const { hyperlinks } = await import(`${configsFolder}/friendlinksConfig.ts`);
+const { renderedConfig } = await import(`${configsFolder}/devConfig.ts`);
 
-export { siteConfig as SiteConfig } from "./configs/siteConfig.ts";
+export { PersonalConfig, siteConfig as SiteConfig, hyperlinks, renderedConfig };
 
 export { navLogo, navItems } from "./navbarConfig.ts";
-
-export { hyperlinks } from "./configs/friendlinksConfig.ts";
-
-export { renderedConfig } from "./configs/devConfig.ts";
 
 export { postsSchema } from "./schema.ts";

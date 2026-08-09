@@ -3,27 +3,76 @@ import FrameCardMacOS from "@/components/StyledCards/FrameCard-macOS.astro";
 import FooterInfo from "./Footer-Info.astro";
 ---
 
-<footer max-w-5xl mx-a my-10 font-mono>
+<div class="footer-divider"></div>
+
+<footer class="footer-wrap">
   <FrameCardMacOS>
-    <div class="md:flex text-bluegray text-xs p-2">
-      <FooterInfo />
-      <div class="md:ml-a md:text-right transition-duration-150">
-        <p>
-          欢迎通过邮箱联系我 👉 <a href="mailto:cilxry@outlook.com" link>Here</a
-          >
+    <div class="footer-inner">
+      <div class="footer-left">
+        <FooterInfo />
+      </div>
+      <div class="footer-right">
+        <p class="footer-contact">
+          欢迎通过邮箱联系我 👉
+          <a href="mailto:cilxry@outlook.com" class="footer-link">cilxry@outlook.com</a>
         </p>
-        <p>
-          Stacks: <a href="https://astro.build/" link>Astro</a> and <a
-            href="https://unocss.nodejs.cn/"
-            link>UnoCSS</a
-          >.
+        <p class="footer-stacks">
+          Stacks: <a href="https://astro.build/" class="footer-link">Astro</a>
+          &amp; <a href="https://unocss.nodejs.cn/" class="footer-link">UnoCSS</a>
         </p>
       </div>
     </div>
   </FrameCardMacOS>
 </footer>
 
-<script>
-  const uaStr = document.getElementById("ua");
-  if (uaStr) uaStr.textContent = navigator.userAgent;
-</script>
+<style>
+  .footer-divider {
+    max-width: 72rem;
+    margin: 2.5rem auto 1.5rem;
+    padding: 0 1rem;
+  }
+  .footer-divider::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cp-800), transparent);
+    opacity: 0.5;
+  }
+  .footer-wrap {
+    max-width: 72rem;
+    margin: 0 auto 2.5rem;
+    padding: 0 1rem;
+    font-family: var(--font-list-standard);
+  }
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+  }
+  @media (min-width: 768px) {
+    .footer-inner {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .footer-right {
+      text-align: right;
+    }
+  }
+  .footer-contact,
+  .footer-stacks {
+    margin: 0.35rem 0;
+    line-height: 1.6;
+  }
+  .footer-link {
+    color: var(--cp-300);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer-link:hover {
+    color: var(--cp);
+    text-decoration: underline;
+  }
+</style>

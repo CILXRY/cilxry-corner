@@ -14,8 +14,3 @@ export const HOMEPAGE_CONFIG = {
   showMusicCard: false,
   showStatsCard: false,
 };
-
-export const PersonalConfig = {
-  name: "CILXRY",
-
-};

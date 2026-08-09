@@ -28,22 +28,31 @@ export const items = [
     header: "技术栈",
     header_eng: "Technology Stack",
     content:
-      '<div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">\
-    <span class="px-3 py-1 text-sm">HTML/CSS</span>\
-    <span class="px-3 py-1 text-sm">Astro</span>\
-    <span class="px-3 py-1 text-sm">UnoCSS</span>\
-    <span class="px-3 py-1 text-sm">TypeScript</span>\
-    <span class="px-3 py-1 text-sm">Vue</span>\
-  </div>',
-  },
-  {
-    header: "写点东西凑字数",
-    header_eng: "Write something to fill the space",
-    content: "我不知道写点什么",
-  },
-  {
-    header: "写点东西凑字数",
-    header_eng: "Write something to fill the space",
-    content: "这里同样是凑字数的，别看了",
+      '<div class="flex flex-wrap gap-2 mt-4">\
+    <span class="tech-badge">HTML/CSS</span>\
+    <span class="tech-badge">Astro</span>\
+    <span class="tech-badge">UnoCSS</span>\
+    <span class="tech-badge">TypeScript</span>\
+    <span class="tech-badge">Vue</span>\
+    <span class="tech-badge">Node.js</span>\
+    <span class="tech-badge">Git</span>\
+  </div>\
+  <style>\
+    .tech-badge {\
+      display: inline-flex;\
+      padding: 0.35rem 0.85rem;\
+      font-size: 0.8rem;\
+      border-radius: 9999px;\
+      background: color-mix(in oklch, var(--cp-800) 50%, transparent);\
+      color: var(--cp-300);\
+      border: 1px solid color-mix(in oklch, var(--cp-700) 40%, transparent);\
+      transition: all 0.3s ease;\
+    }\
+    .tech-badge:hover {\
+      background: color-mix(in oklch, var(--cp-700) 60%, transparent);\
+      border-color: color-mix(in oklch, var(--cp) 50%, transparent);\
+      transform: translateY(-1px);\
+    }\
+  </style>',
   },
 ];

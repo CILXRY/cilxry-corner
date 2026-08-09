@@ -2,25 +2,59 @@
 import { SiteConfig } from "@cfg/index.ts";
 ---
 
-<div>
-  <p m-0>&copy; 2026 CILXRY. All Systems operational.</p>
-  {
-    SiteConfig.FilingInfo.filingStatus && (
-      <>
-        <a href="https://beian.miit.gov.cn" target="_blank" link block>
-          &gt;
-          {SiteConfig.FilingInfo.icpFiling}
-        </a>
-        {SiteConfig.FilingInfo.psbFiling && SiteConfig.FilingInfo.psbUrl && (
-          <a href={SiteConfig.FilingInfo.psbUrl} link block>
-            &gt; {SiteConfig.FilingInfo.psbFiling}
+<div class="footer-info">
+  <p class="footer-copy">&copy; 2026 CILXRY. All Systems operational.</p>
+  <div class="footer-links">
+    {
+      SiteConfig.FilingInfo.filingStatus && (
+        <>
+          <a href="https://beian.miit.gov.cn" target="_blank" class="fi-link">
+            {SiteConfig.FilingInfo.icpFiling}
           </a>
-        )}
-      </>
-    )
-  }
-  <!-- <a href="#" link>&gt; Status: Not Registering at MIIT yet</a><br /> -->
-  <a href="#" link block>&gt; RSS: Offline</a>
-  <a href="#" link block>&gt; Sitemap is unavailable now</a>
+          {SiteConfig.FilingInfo.psbFiling && SiteConfig.FilingInfo.psbUrl && (
+            <a href={SiteConfig.FilingInfo.psbUrl} class="fi-link">
+              {SiteConfig.FilingInfo.psbFiling}
+            </a>
+          )}
+        </>
+      )
+    }
+    <span class="fi-offline" title="尚未启用">RSS: Offline</span>
+    <span class="fi-offline" title="尚未启用">Sitemap: Unavailable</span>
+  </div>
 </div>
+
+<style>
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .footer-copy {
+    margin: 0;
+    line-height: 1.6;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.75rem;
+    row-gap: 0.2rem;
+  }
+  .fi-link {
+    color: var(--cp-400);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.3s ease;
+  }
+  .fi-link:hover {
+    color: var(--cp);
+    text-decoration: underline;
+  }
+  .fi-offline {
+    color: var(--text-tertiary);
+    font-size: 0.7rem;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>
 

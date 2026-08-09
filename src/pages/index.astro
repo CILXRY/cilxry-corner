@@ -1,7 +1,7 @@
 ---
 // 首页 Dashboard
 import BasePageLayout from "@basePageLayout";
-const name = "CILXRY";
+const name = PersonalConfig.name;
 import { sortedPosts } from "@ut/content/postsMap.ts";
 
 let recentPosts: typeof sortedPosts = [];
@@ -9,15 +9,36 @@ recentPosts = sortedPosts.slice(0, 4);
 
 import ShowenCard from "@cp/posts/ShowenCard.astro";
 import JustIntroCard from "@cp/GlobleSite/StyledCards/JustIntroCard.astro";
+import { PersonalConfig } from "@config";
 ---
 
 <BasePageLayout k="">
-  <div md:flex md:gap-6 sm:px-4 >
+  <!-- L -->
+  <div class="bg" w-30%>
+    <JustIntroCard />
+  </div>
+  <!-- R -->
+   <div class="bg">
+    
+   </div>
+  <!-- Hero -->
+  <div class="hero-wrap">
+    <div aria-hidden="true"></div>
+    <p class="hero-label">👋 欢迎来到</p>
+    <h1 class="hero-title">{name} 纪事小栈</h1>
+    <p class="hero-desc">许愿 如所愿 皆所愿</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <div md:flex md:gap-6 sm:px-4>
     <div md:flex-shrink-0 md:w-60 lg:w-108>
       <JustIntroCard />
     </div>
     <div text-colord mt6 md:mt0 md:flex-1 md:min-w-0>
-      <h1 mt0>Last Writing</h1>
+      <div class="section-header">
+        <h2 class="section-title">最近文章</h2>
+        <p class="section-subtitle">Recent Writings</p>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {
           recentPosts.map((post, _index) => (
@@ -36,19 +57,71 @@ import JustIntroCard from "@cp/GlobleSite/StyledCards/JustIntroCard.astro";
       </div>
     </div>
   </div>
-
-  <!-- {
-    HOMEPAGE_CONFIG.showStatsCard && (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 mb-6">
-        <FrameCard styling={{ theme: "macos", floatUp: false }}>
-          <div class="p-4">
-            <h3 class="text-lg font-semibold mb-3 text-gray-100">统计信息</h3>
-            <p class="text-sm text-gray-400">
-              这里可以显示文章数量、访问统计等
-            </p>
-          </div>
-        </FrameCard>
-      </div>
-    )
-  } -->
 </BasePageLayout>
+
+<style>
+  .hero-wrap {
+    position: relative;
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-orb {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--cp-800) 0%, transparent 70%);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero-label {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.12em;
+    margin: 0;
+  }
+  .hero-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 300;
+    margin: 0.35rem 0 0;
+    background: linear-gradient(
+      135deg,
+      oklch(0.92 0.06 var(--primary-h)) 0%,
+      var(--primary) 70%,
+      oklch(0.55 0.12 var(--primary-h)) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0 0;
+    letter-spacing: 0.06em;
+  }
+  .hero-divider {
+    width: 2.5rem;
+    height: 2px;
+    margin-top: 1.25rem;
+    background: linear-gradient(90deg, var(--cp), transparent);
+    border-radius: 1px;
+  }
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text-colord);
+  }
+  .section-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin: 0.15rem 0 0;
+    letter-spacing: 0.06em;
+  }
+</style>

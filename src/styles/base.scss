@@ -7,12 +7,43 @@
   font-family: var(--font-list-standard);
 }
 
+// 选中文字的颜色
+::selection {
+  background: color-mix(in oklch, var(--cp) 30%, transparent);
+  color: var(--text-primary);
+}
+
+// 极淡的圆点纹理，增加背景层次感
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+// 全局平滑滚动
+html {
+  scroll-behavior: smooth;
+  font-size: clamp(13px, 13px + 0.3027vw, 16px);
+}
+
+// 自定义滚动条
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cp-800);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cp-700);
+}
+
 // 给网站全局的 rem 做基准
 // 怎么算出来的这个值（0.3027vw）：
 // 系数 = (最大字号-最小字号)/(最大视口-最小视口)*100
 // 视口取值 max1366 min375
 // (16 - 13)/(1366 - 375) * 100 = 0.30272452068618
-
-html {
-  font-size: clamp(13px, 13px + 0.3027vw, 16px);
-}

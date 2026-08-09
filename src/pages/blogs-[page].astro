@@ -21,9 +21,23 @@ const allSearchData = sortedPosts.map((post) => ({
     day: "numeric",
   }),
 }));
+
+const totalPosts = sortedPosts.length;
+const currentPage = page.currentPage;
+const lastPage = page.lastPage;
 ---
 
 <BasePageLayout k="" styled={"default"}>
+  <div class="page-header">
+    <div class="page-header-orb" aria-hidden="true"></div>
+    <h1 class="page-title">博客</h1>
+    <p class="page-subtitle">
+      Blog
+      <span class="page-count">· 共 {totalPosts} 篇</span>
+    </p>
+    <div class="page-divider"></div>
+  </div>
+
   <div class="mb-8 max-w-2xl mx-auto">
     <!-- <SearchBox
       searchData={allSearchData}
@@ -32,3 +46,48 @@ const allSearchData = sortedPosts.map((post) => ({
   </div>
   <PerPage p={page} />
 </BasePageLayout>
+
+<style>
+  .page-header {
+    position: relative;
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .page-header-orb {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--cp-800) 0%, transparent 70%);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  .page-title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 300;
+    margin: 0;
+    background: linear-gradient(135deg, oklch(0.92 0.06 var(--primary-h)) 0%, var(--primary) 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .page-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    margin: 0.35rem 0 0;
+    letter-spacing: 0.06em;
+  }
+  .page-count {
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+  }
+  .page-divider {
+    width: 2.5rem;
+    height: 2px;
+    margin-top: 1rem;
+    background: linear-gradient(90deg, var(--cp), transparent);
+    border-radius: 1px;
+  }
+</style>
